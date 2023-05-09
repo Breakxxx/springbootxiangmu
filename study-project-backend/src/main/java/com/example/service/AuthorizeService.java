@@ -1,15 +1,10 @@
 package com.example.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
-public class AuthorizeService implements UserDetailsService {
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
+public interface AuthorizeService extends UserDetailsService {
+    String sendValidateEmail(String email, String sessionId, boolean hasAccount);
+    String validateAndRegister(String username, String password, String email, String code, String sessionId);
+    String validateOnly(String email, String code, String sessionId);
+    boolean resetPassword(String password, String email);
 }
